@@ -56,12 +56,16 @@ function App() {
           {canMakeMove ? 
           <Typography level="body-lg" color="neutral" >Make your move!</Typography> :
           hasWon ?
-          <Typography level="title-lg" color="success" textAlign="center">You have won!
-          <br/>Tell your friends they suck 😼</Typography> :
+          <Typography level="title-lg" color="success" textAlign="center">You have won! Tell your friends they suck 😼</Typography> :
           checkForTie(gameState) ? 
           <Typography level="title-lg" color="warning" textAlign="center">Game over!
           <br/>It's a tie :(</Typography> :
           <LinkDisplay data={gameState}/> }
+          {(hasWon || checkForTie(gameState)) && 
+          <>
+          <Typography level="body-lg" color="primary" textAlign="center">Wanna play again? </Typography>
+          <LinkDisplay data={"---------"}/>
+          </>}
         </Stack>
       </Sheet>
     </CssVarsProvider>
