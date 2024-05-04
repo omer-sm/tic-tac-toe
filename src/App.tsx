@@ -1,25 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { CssVarsProvider } from '@mui/joy/styles'
+import Sheet from "@mui/joy/Sheet"
+import GameTable from './Containers/GameTable'
+
+const getNextPlayer = (gameState: string) => {
+  return [...gameState.matchAll(/x/g)].length > [...gameState.matchAll(/o/g)].length ? "o" : "x"
+}
 
 function App() {
+  const [gameState, setGameState] = React.useState<string>("---------")
+  const selectCell = (index: number) => {
+    setGameState(gameState.substring(0, index) + getNextPlayer(gameState) + gameState.substring(index + 1))
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <CssVarsProvider defaultMode="dark">
+      <Sheet variant="outlined" sx={{ height: "100vh", border: "none", display: "flex", flexDirection: "column", justifyContent: "space-between", alignItems: "center" }}>
+        <GameTable data={gameState} handleClick={selectCell}/>
+      </Sheet>
+    </CssVarsProvider>
   );
 }
 
