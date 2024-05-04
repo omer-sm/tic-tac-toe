@@ -64,7 +64,7 @@ function App() {
           {(hasWon || checkForTie(gameState)) && 
           <>
           <Typography level="body-lg" color="primary" textAlign="center">Wanna play again? </Typography>
-          <LinkDisplay data={"---------"}/>
+          <LinkDisplay data={""}/>
           </>}
         </Stack>
       </Sheet>

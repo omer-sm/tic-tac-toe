@@ -3,6 +3,7 @@ import Typography from "@mui/joy/Typography"
 import Link from "@mui/joy/Link"
 
 const makeLink = (data: string) => {
+    if (data === "") return "/tic-tac-toe"
     return "/tic-tac-toe/?g=" + btoa(data)
 }
 
